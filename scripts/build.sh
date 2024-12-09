@@ -14,8 +14,6 @@ do
             generate_magnet_uri=true;;
         "--locales")
             generate_locales=true;;
-        "--webp")
-            generate_webp=true;;
     esac
     shift
 done
@@ -70,12 +68,10 @@ if [ ! -d _site ]; then
 fi
 
 # Generate WebP files
-if [ "$generate_webp" == "true" ]; then
-    echo -e "\nGenerate WebP Images"
-    echo "------------------------------------------------------"
-    ./scripts/helpers/generate-webp.sh
-    abort_if_failed $?
-fi
+echo -e "\nGenerate WebP Images"
+echo "------------------------------------------------------"
+./scripts/helpers/generate-webp.sh
+abort_if_failed $?
 
 # Due to a RegexpError in jekyll-polyglot, the wildcard doesn't work in _config.yml.
 # Externally delete source files not desired in the build output.
